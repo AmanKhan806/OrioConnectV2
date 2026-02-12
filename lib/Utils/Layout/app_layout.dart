@@ -59,7 +59,7 @@ class Layout extends StatelessWidget {
                     gradient: LinearGradient(
                       colors: [
                         ColorResources.appMainColor,
-                        ColorResources.appMainColor.withOpacity(0.85),
+                        ColorResources.appMainColor.withAlpha(085),
                       ],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
@@ -140,13 +140,13 @@ class _LayoutBottomBarState extends State<LayoutBottomBar> {
         Get.offAllNamed(AppRoutes.homeRoute);
         break;
       case 1:
-        Get.toNamed(AppRoutes.leaveRoute);
+        Get.toNamed(AppRoutes.homeRoute);
         break;
       case 2:
-        Get.toNamed(AppRoutes.applyAdvanceRoute);
+        Get.toNamed(AppRoutes.homeRoute);
         break;
       case 3:
-        Get.toNamed(AppRoutes.profileRoute);
+        Get.toNamed(AppRoutes.homeRoute);
         break;
       case 4:
         Get.toNamed(AppRoutes.menuRoute);
@@ -174,7 +174,7 @@ class _LayoutBottomBarState extends State<LayoutBottomBar> {
         ),
       ),
       child: SalomonBottomBar(
-        selectedColorOpacity: 0.3,
+        selectedColorOpacity: 0.4,
         itemShape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(24)),
         ),

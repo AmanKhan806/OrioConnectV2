@@ -29,16 +29,16 @@ class LoginService {
     required int otp,
   }) async {
     try {
+      final body = {'username': username, 'otp': otp};
+      log("OTP Request Body:: $body");
       final response = await _networkClient.post(
         endpoint: ApiConstants.verifyOtpUrl,
-        body: {
-          'userid': username,
-          'otp': otp,
-        },
+        body: body,
       );
       log("Otp Response:: $response");
       return OtpResponseModel.fromJson(response.data);
     } catch (e) {
+      log("OTP Verification Error: $e");
       rethrow;
     }
   }

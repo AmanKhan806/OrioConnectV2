@@ -5,5 +5,6 @@ class ApiConstants {
   static final String loginUrl = '$baseUrl/auth/login';
   static final String verifyOtpUrl = '$baseUrl/auth/verify-otp';
   static final String forgotPasswordUrl = '$baseUrl/auth/forget-password';
-  static final String logoutUrl = '$baseUrl/auth/logout';
+  static final String changePasswordUrl = '$baseUrl/employees/change-password';
+  static final String officeWifiUrl = '$baseUrl/wifi-networks/all';
 }

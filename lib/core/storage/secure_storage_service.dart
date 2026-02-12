@@ -96,7 +96,10 @@ class SecureStorageService {
 
   // Designation ID
   static Future<void> saveDesignationId(String designationId) async {
-    await _storage.write(key: StorageKeys.keyDesignationId, value: designationId);
+    await _storage.write(
+      key: StorageKeys.keyDesignationId,
+      value: designationId,
+    );
   }
 
   static Future<String?> getDesignationId() async {
@@ -155,6 +158,11 @@ class SecureStorageService {
 
   static Future<String?> getJoinDate() async {
     return await _storage.read(key: StorageKeys.keyJoinDate);
+  }
+
+  static Future<int> getEmployeeIdAsInt() async {
+    final empIdString = await _storage.read(key: StorageKeys.keyEmployeeId);
+    return int.tryParse(empIdString ?? '0') ?? 0;
   }
 
   // Check if logged in (based on token)

@@ -14,6 +14,8 @@ abstract class AppRoutes {
 
   static const changePasswordRoute = '/change-password';
 
+  static const officeWifiRoute = '/office-wifi';
+
   static const applyAdvanceRoute = '/apply-advance-Listing';
 
   static const createAdvanceRoute = '/create-advance';

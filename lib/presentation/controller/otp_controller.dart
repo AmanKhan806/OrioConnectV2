@@ -1,6 +1,6 @@
 import 'dart:developer';
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:orioconnect/App/routes/app_routes.dart';
 import 'package:orioconnect/Utils/CircularProgressIndicator/circular_progress_indicator.dart';
 import 'package:orioconnect/Utils/Snackbar/custom_snackbar.dart';
@@ -37,7 +37,7 @@ class OtpController extends GetxController {
       try {
         controller.dispose();
       } catch (e) {
-        // Already disposed, ignore
+        log("OTP Controller Dispose Error: $e");
       }
     }
 
@@ -45,7 +45,7 @@ class OtpController extends GetxController {
       try {
         focusNode.dispose();
       } catch (e) {
-        // Already disposed, ignore
+        log("OTP FocusNode Dispose Error: $e");
       }
     }
     otpControllers.clear();
@@ -70,7 +70,7 @@ class OtpController extends GetxController {
     }
 
     final userId = await SecureStorageService.getUserId();
-
+    log("User id :: $userId");
     if (userId == null || userId.isEmpty) {
       errorMessage.value = 'User ID not found. Please login again.';
       customSnackBar(
@@ -135,26 +135,21 @@ class OtpController extends GetxController {
             if (employee.address != null && employee.address!.isNotEmpty) {
               await SecureStorageService.saveUserAddress(employee.address!);
             }
-
             if (employee.joinDate != null && employee.joinDate!.isNotEmpty) {
               await SecureStorageService.saveJoinDate(employee.joinDate!);
             }
-
             if (employee.departmentId != null) {
               await SecureStorageService.saveDepartmentId(
                 employee.departmentId.toString(),
               );
             }
-
             if (employee.designationId != null) {
               await SecureStorageService.saveDesignationId(
                 employee.designationId.toString(),
               );
             }
-
             await SecureStorageService.saveUserStatus(employee.status);
           }
-
           log("User data saved successfully");
         }
 
@@ -176,12 +171,6 @@ class OtpController extends GetxController {
       log("OTP Verification Error: $e");
       CustomLoadingDialog.hide();
       isLoading.value = false;
-      errorMessage.value = 'Something went wrong. Please try again.';
-      customSnackBar(
-        'Error',
-        'Something went wrong. Please try again.',
-        snackBarType: SnackBarType.error,
-      );
     } finally {
       CustomLoadingDialog.forceHide();
       isLoading.value = false;

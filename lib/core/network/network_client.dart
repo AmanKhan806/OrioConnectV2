@@ -31,20 +31,19 @@ class NetworkClient {
     required String endpoint,
     Map<String, dynamic>? body,
     Map<String, dynamic>? headers,
+    bool showErrorSnackbar = true,
   }) async {
     try {
       if (!_connectivityService.isConnected) {
         throw NoInternetException();
       }
-
       final options = Options(headers: _buildHeaders(headers));
-
       final response = await _dio.post(endpoint, data: body, options: options);
       log("Final Response:: $response");
       return response;
     } catch (e) {
       log("Final Error:: $e");
-      throw ExceptionHandler.handleError(e);
+      throw ExceptionHandler.handleError(e, showSnackbar: showErrorSnackbar);
     }
   }
 
@@ -52,6 +51,7 @@ class NetworkClient {
     required String endpoint,
     Map<String, dynamic>? queryParameters,
     Map<String, dynamic>? headers,
+    bool showErrorSnackbar = true,
   }) async {
     try {
       if (!_connectivityService.isConnected) {
@@ -68,7 +68,7 @@ class NetworkClient {
 
       return response;
     } catch (e) {
-      throw ExceptionHandler.handleError(e);
+      throw ExceptionHandler.handleError(e, showSnackbar: showErrorSnackbar);
     }
   }
 
@@ -76,6 +76,7 @@ class NetworkClient {
     required String endpoint,
     Map<String, dynamic>? body,
     Map<String, dynamic>? headers,
+    bool showErrorSnackbar = true,
   }) async {
     try {
       if (!_connectivityService.isConnected) {
@@ -88,7 +89,7 @@ class NetworkClient {
 
       return response;
     } catch (e) {
-      throw ExceptionHandler.handleError(e);
+      throw ExceptionHandler.handleError(e, showSnackbar: showErrorSnackbar);
     }
   }
 
@@ -96,6 +97,7 @@ class NetworkClient {
     required String endpoint,
     Map<String, dynamic>? body,
     Map<String, dynamic>? headers,
+    bool showErrorSnackbar = true,
   }) async {
     try {
       if (!_connectivityService.isConnected) {
@@ -112,7 +114,7 @@ class NetworkClient {
 
       return response;
     } catch (e) {
-      throw ExceptionHandler.handleError(e);
+      throw ExceptionHandler.handleError(e, showSnackbar: showErrorSnackbar);
     }
   }
 

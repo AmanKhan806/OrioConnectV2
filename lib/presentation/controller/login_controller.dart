@@ -48,9 +48,11 @@ class LoginController extends GetxController {
         userId: email.text.trim(),
         password: password.text.trim(),
       );
+      
       CustomLoadingDialog.hide();
+      
       if (response.isSuccess) {
-          await SecureStorageService.saveUserId(email.text.trim());
+        await SecureStorageService.saveUserId(email.text.trim());
         customSnackBar(
           'Success',
           response.message,
@@ -65,13 +67,8 @@ class LoginController extends GetxController {
         );
       }
     } catch (e) {
-      log("Catch error:: $e");
+      log("Login error: $e");
       CustomLoadingDialog.hide();
-      customSnackBar(
-        'Error',
-        'Something went wrong. Please try again.',
-        snackBarType: SnackBarType.error,
-      );
     } finally {
       CustomLoadingDialog.forceHide();
     }
